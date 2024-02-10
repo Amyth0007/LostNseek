@@ -1,43 +1,33 @@
-#include<iostream>
-using namespace std;
-
-class worker
+#include <stdio.h>
+int main()
 {
-  public:
-  char wname[20];
-  int num_of_hr;
-  float sal,pay_rate;
-
-  void accept(){
-       cout<<"\n wname=";
-       cin>>wname;
-       cout<<"\n num_of_hr=";
-       cin>>num_of_hr;
-
-
+  int a[20], n, i, d, sum = 0, c = 0, c1 = 0;
+  printf("enter num..");
+  scanf("%d", &n);
+  for (i = 0; i < n; i++)
+  {
+    scanf("%d", &a[i]);
+  }
+  for (i = 0; i < n; i++)
+  {
+    while (a[i] > 0)
+    {
+      d = a[i] % 10;
+      c++;
+      a[i] = a[i] / 10;
+    }
+    if (c % 2 == 0)
+    {
+      c1++;
+      c = 0;
+    }
+    else
+    {
+      c = 0;
+    }
   }
 
-  void cal( float pay_rate=5.0f){
-        float sal=pay_rate*num_of_hr;
-        cout<<"total sal of worker is..."<<sal;
+  printf("%d", c1);
 
-  }
-  void disp(){
-       
-       cout<<"\n wname="<<wname;
-      //cout<<"\n total sal="<<sal;
-     
-  }
-
-
-};
-
-
-int main(){
-
-worker ob;
-ob.accept();
-ob.cal();
-ob.disp();
-    
+  return 0;
 }

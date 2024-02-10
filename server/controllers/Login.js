@@ -1,4 +1,4 @@
-import Users from "../models/user.js"
+import User from "../models/user.js"
 import Jwt from 'jsonwebtoken'
 
 const Login = async (req, res) => {
@@ -9,7 +9,7 @@ const Login = async (req, res) => {
     if (!email || !password) {
         return res.status(401).send({ msg: "rquires fields are missing" })
     } else {
-        const check = await Users.findOne({ email: email })
+        const check = await User.findOne({ email: email })
 
         if (check.password === password) {
 

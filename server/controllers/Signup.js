@@ -1,5 +1,5 @@
 import Jwt from "jsonwebtoken";
-import Users from "../models/user.js";
+import User from "../models/user.js";
 
 const Signup = async (req, res) => {
     console.log(req.body);
@@ -8,11 +8,11 @@ const Signup = async (req, res) => {
     if (!name || !email || !rollno || !password) {
         return res.status(401).send({ msg: "rquires fields are missing" })
     } else {
-        const check = await Users.findOne({ email: email })
-        if(check){
-            res.status(408).send({msg:"user exist"})
+        const check = await User.findOne({ email: email })
+        if (check) {
+            res.status(408).send({ msg: "user exist" })
         }
-        const user = new Users({
+        const user = new User({
             name: name,
             email: email,
             rollno: rollno,
@@ -27,29 +27,27 @@ const Signup = async (req, res) => {
             console.log(user);
             const payload = {
                 user: {
-                    id :user._id
+                    id: user._id
                 }
             }
             Jwt.sign(
                 payload,
                 "asdfghjk",
-                {expiresIn: '7 days'},
-                (err, token)=>{
-                    if(err){
+                { expiresIn: '30 days' },
+                (err, token) => {
+                    if (err) {
                         console.error(err);
-                    }else{
+                    } else {
                         console.log(token);
-                       res.status(201).send({token})
+                        res.status(201).send({ token })
                     }
                 }
             )
         } catch (error) {
-            
+
             console.error("Error saving user:", error);
             res.status(500).send({ msg: "Internal Server Error" });
         }
-
-        
 
 
 
