@@ -112,7 +112,7 @@ app.post('/api/upload', upload.single('file'), async(req, res) => {
         }
  
     } catch (error) {
-
+      console.log("");      
         console.error("Error saving user:", error);
         // res.status(500).json({ url: "http://localhost:1000/image/" + req.file.originalname });
         res.status(500).send({ msg: "Internal Server Error" });
